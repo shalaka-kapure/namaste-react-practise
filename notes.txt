@@ -1,0 +1,60 @@
+npm init -y- to intialise npm in our project. package.json are installed
+npm install -D parcel- to install parcel for dev dependency.
+npx parcel index.html - to execute
+dev build is done, parcel cache is installed.
+npm install react- installs react, import react and react dom from React, type=module in <script>
+package-lock- locks the version of react used. 
+^ caret ~ tilde automatically update the latest version 
+
+
+Parcel is a bundler.
+creates a server
+Hot Module Replacement (HMR)- updating the web page as soon as we save the code. It is done by parcel
+File watcher algorithm does HMR written in C++
+Bundling
+minified 
+removes all console logs/ cleaning our code
+super fast build algorithm
+dev and production build
+Image optimization (not coming from backend)
+caching while development 
+compression of files
+compatible with older versions of browsers (polyfils converts newer versions of code into older version for the browsers to understand)
+enables HTTPS on dev machine (npx parcel index.html --https)
+manages Port number
+put parcel-cache, dist, node-modules in gitignore 
+consistent hashing algorithm to cache and bundling
+zero config bundler
+Code splitting
+Tree shaking- removing unwanted code
+
+Q. why is react fast-- (1)react dom (2)bundlers 
+
+Q. transitive dependencies-- package manager has dependency that are dependend on other dependencies (dependency tree)
+
+Q. Advantages of using JSX: 
+(1) readability
+(2) developer's experience 
+(3) syntactical sugar
+(4) maintainability
+(5) less code 
+(6) no repetition
+
+JSX uses babel behind the scenes.
+ 
+Babel is a transplier/ complier that converts JSX into React.createElement.
+
+Q. What are React elements?
+React elements are Js variables that returns a Js Object. 
+
+Q. What are  React Components? 
+2 types- functional, class based
+
+(1) Functional components are Js function that returns an element or a composition of elements.
+
+Q. <Title/> <=> {Title()} when calling one component inside another
+If it is a normal element/variable, while calling it inside another component {title}
+
+Q. Calling one component inside another is called as Component composition/Nested Components.  
+
+Q. Key reconcilliation

@@ -1,0 +1,31 @@
+{
+  "name": "namaste-react-practise",
+  "version": "1.0.0",
+  "description": "practise react coding",
+  "main": "App.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shalaka-kapure/namaste-react-practise.git"
+  },
+  "author": "Shalaka Kapure",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shalaka-kapure/namaste-react-practise/issues"
+  },
+  "homepage": "https://github.com/shalaka-kapure/namaste-react-practise#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserList": [
+    "last 2 versions"
+  ]
+}
