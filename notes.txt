@@ -4,7 +4,7 @@ npx parcel index.html - to execute
 dev build is done, parcel cache is installed.
 npm install react- installs react, import react and react dom from React, type=module in <script>
 package-lock- locks the version of react used. 
-^ caret ~ tilde automatically update the latest version 
+^ caret ~ tilde automatically update to the latest version 
 
 
 Parcel is a bundler.
@@ -28,7 +28,7 @@ zero config bundler
 Code splitting
 Tree shaking- removing unwanted code
 
-Q. why is react fast-- (1)react dom (2)bundlers 
+Q. why is react fast-- (1)react dom (2)bundlers (3)reconcilliation
 
 Q. transitive dependencies-- package manager has dependency that are dependend on other dependencies (dependency tree)
 
@@ -41,6 +41,8 @@ Q. Advantages of using JSX:
 (6) no repetition
 
 JSX uses babel behind the scenes.
+
+JSX will have only one parent div.
  
 Babel is a transplier/ complier that converts JSX into React.createElement.
 
@@ -57,4 +59,24 @@ If it is a normal element/variable, while calling it inside another component {t
 
 Q. Calling one component inside another is called as Component composition/Nested Components.  
 
-Q. Key reconcilliation
+Q. Key reconcilliation - a unique key for React to differentiate between children(divs) of the same parent, so that it will only re-render/update the specific div where changes were made.
+
+Q. You pass in arguments, you receive parameters.
+function fn(param1, param2){} 
+fn("arguments")
+
+Q. Virtual DOM - representation of actual DOM in our code for reconcilliation algorithm.
+
+Q.Reconcilliation - uses diff algorithm to differentiate from one tree(actual DOM) to another(virtual DOM) and determines what needs to be updated.
+
+Q. React Fiber- reconcilliation engine in React 16 is responsible for diff
+
+Q. Why we don't use index as a key?- negatively affects the performance but can be used only if there is no unique key available
+
+Q. Config driven UI 
+
+Q. A hook is a normal JS function
+
+Q. useState creates local State variables.
+
+Q. 2 way binding- RJs

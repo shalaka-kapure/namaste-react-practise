@@ -1,3 +1,21 @@
+import React from "react";
+import ReactDOM from "react-dom/client ";
+import HeaderComponent from "./src/components/HeaderComponent";
+import Body from "./src/components/Body";
+import Footer from "./src/components/Footer";
+
+const AppLayout = () => {
+  return (
+    <>
+      <HeaderComponent />
+      <Body />
+      <Footer />
+    </>
+  );
+};
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);
+
 //Older way of writing React before JSX was invented
 
 // import React from "react";
@@ -20,7 +38,7 @@
 // );
 
 // const container = React.createElement(
-//     "div", 
+//     "div",
 //     {
 //         id: "container",
 //     },
