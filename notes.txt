@@ -80,3 +80,9 @@ Q. A hook is a normal JS function
 Q. useState creates local State variables.
 
 Q. 2 way binding- RJs
+
+Q. useEffect is a hook 
+
+Q. shimmer effect
+
+Q. Conditional rendering

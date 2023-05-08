@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Title = () => {
     return (
       //   <h1 id="title">
@@ -13,12 +15,18 @@ const Title = () => {
     );
   };
 
-
   //Composing Components
 const HeaderComponent = () => {
+const [isLoggedIn, setisLoggedIn] = useState(true);
+
+const loggedInUser = () => {
+  //API call to check if the user is logged in
+  setisLoggedIn(!isLoggedIn);
+}
     return (
       <div className="header">
         <Title />
+        <h1>FoodVilla</h1>
         <div className="navItems">
           <ul>
             <li>Home</li>
@@ -27,6 +35,7 @@ const HeaderComponent = () => {
             <li>Cart</li>
           </ul>
         </div>
+        {isLoggedIn ? <button onClick={loggedInUser}>Logout</button> : <button onClick={loggedInUser}>Log In</button> }
       </div>
     );
   };
