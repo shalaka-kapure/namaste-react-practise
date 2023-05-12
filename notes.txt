@@ -86,3 +86,7 @@ Q. useEffect is a hook
 Q. shimmer effect
 
 Q. Conditional rendering
+
+Q. 2 types of routing- client side and server side
+Server side- all pages come from the server
+Client side- no new network call is made everytime we change pages

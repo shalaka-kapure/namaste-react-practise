@@ -2,57 +2,125 @@
     background-color: red;
 } */
 
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 10px 35px;
-    border: 1px solid black;
-    align-items: center;
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 35px;
+  border: 1px solid black;
+  align-items: center;
 }
 
-.logo{
-    width: 100px; 
+.logo {
+  width: 100px;
 }
 
-.navItems > ul{
-    display: flex;
-    list-style-type: none;
+.navItems > ul {
+  display: flex;
+  list-style-type: none;
 }
 
-.navItems > ul > li{
-    padding: 10px;
+.navItems > ul > li {
+  padding: 10px;
 }
 
+.card {
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.card img {
+  width: 100%;
+}
+
+.cardsList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 25px;
+}
+
+.searchContainer {
+  margin-left: 35px;
+}
+
+.searchInput {
+  margin-right: 10px;
+}
+
+.footer {
+  /* margin: 0px 35px; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logBtn {
+  margin-right: 5px;
+}
+
+.shimmer {
+  width: 221.6px;
+  height: 377.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img {
+  width: 90%;
+  height: 150px;
+  background-color: darkgrey;
+}
+
+.shimmer h2,
+.shimmer h3,
+.shimmer h4 {
+  width: 90%;
+  height: 50px;
+  background-color: darkgrey;
+}
+
+.navItems a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+
+.cardsList a{
+    text-decoration: none;
+    color: black;  
+}
 .card{
-    width: 200px;
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
+    width: 221.6px;
+    height: 377.5px;
+    cursor: pointer;     
 }
 
-.card img{
-    width:100%;
+.resInfo {
+  display: flex;
+  flex-direction: row;
 }
 
-.cardsList{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 25px;
+.resInfo div {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.searchContainer{
-    margin-left: 35px;
+.resImg {
+  width: 50%;
+  display: flex;
+  align-items: center!important;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.searchInput{
-    margin-right: 10px;
-}
-
-.footer{
-    /* margin: 0px 35px; */
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
+.resMenu{
+margin-left: 35px;
 }

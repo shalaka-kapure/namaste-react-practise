@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { resList } from "../config";
 import RestaurantCard from "./RestaurantCard";
 import { useState } from "react";
-import Shimmer from "./ShimmerUI";
 import ShimmerUI from "./ShimmerUI";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [searchTxt, setsearchTxt] = useState("");
@@ -53,7 +53,9 @@ const Body = () => {
           <h1>No restaurants matched your filter</h1>
         ) : (
           filteredRes.map((restaurant) => (
+            <Link to= {"/restaurant/"+ restaurant.data.id}>
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+            </Link>
           ))
         )}
       </div>
