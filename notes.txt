@@ -90,3 +90,48 @@ Q. Conditional rendering
 Q. 2 types of routing- client side and server side
 Server side- all pages come from the server
 Client side- no new network call is made everytime we change pages
+
+Q. LifeCycle method- Constructor first(state is initialised), then the component renders, then componentDidMount(api called) 
+
+Parent Constructor
+Parent render
+1st Child Constructor
+1st Child render
+2nd Child Constructor
+2nd Child render
+1st Child componentDidMount
+2nd Child componentDidMount
+Parent componentDidMount 
+
+In the render phase, constructor and render are called. In the commit phase, componentDidMount is called
+
+Q. Why can you make a componentDidMount async function but useEffect callback function cannot be async
+
+if async componentDidMount is used, 
+Parent Constructor
+Parent render
+1st Child Constructor
+1st Child render
+DOM is updated 
+Child componentDidMount (api is called)
+Parent componentDidMount (gets printed since async)
+json is logged
+1st Child componentDidMount (console.log)
+1st Child render (re-render)
+componentDidUpdate
+componentWillUnmount (when moving to other page)
+
+componentDidMount will be called after 1st render (like when empty dependency array is passed), componentDidUpdate will be called after every next render (when no dependency array is passed)
+
+useEffect(()=>{
+    console.log("useEffect") //componentDidMount 
+
+    return() =>{
+        console.log("useEffect return") //componentWillUnmount
+    }
+}, []);
+console.log("render")
+
+render
+useEffect
+useEffect return //will be printed when you leave the page

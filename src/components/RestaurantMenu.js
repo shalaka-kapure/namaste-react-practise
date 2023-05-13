@@ -31,9 +31,7 @@ const RestaurantMenu = () => {
     );
   }
 
-  return (!resInfo || !menu) ? (
-    <ShimmerUI />
-  ) : (
+  return (menu?.length > 0) ?  (
     <>
       <div className="resInfo">
         <div className="resImg">
@@ -75,7 +73,9 @@ const RestaurantMenu = () => {
         ))}
       </div>
     </>
-  );
+  ) : (
+    <ShimmerUI />
+  ) 
 };
 
 export default RestaurantMenu;
