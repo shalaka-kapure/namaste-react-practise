@@ -25,10 +25,12 @@
 }
 
 .card {
-  width: 200px;
   border: 1px solid black;
   padding: 10px;
-  margin: 10px;
+  margin: 15px 10px;
+  width: 221.6px;
+  height: 377.5px;
+  cursor: pointer;
 }
 
 .card img {
@@ -90,14 +92,9 @@
   padding: 10px;
 }
 
-.cardsList a{
-    text-decoration: none;
-    color: black;  
-}
-.card{
-    width: 221.6px;
-    height: 377.5px;
-    cursor: pointer;     
+.cardsList a {
+  text-decoration: none;
+  color: black;
 }
 
 .resInfo {
@@ -116,11 +113,11 @@
 .resImg {
   width: 50%;
   display: flex;
-  align-items: center!important;
+  align-items: center !important;
   justify-content: center;
   flex-direction: column;
 }
 
-.resMenu{
-margin-left: 35px;
+.resMenu {
+  margin-left: 35px;
 }

@@ -4,31 +4,26 @@ import RestaurantCard from "./RestaurantCard";
 import { useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/utils";
+import useOnline from "../utils/useOnline";
+import useRes from "../utils/useRes";
 
 const Body = () => {
   const [searchTxt, setsearchTxt] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
-  // const [restaurants, setRestaurants] = useState(resList); mapping data from the mock data
-  const [filteredRes, setfilteredRes] = useState([]);
-  const filterData = (searchTxt, restaurants) => {
-    return restaurants.filter((restaurant) => restaurant?.data?.name?.toLowerCase()?.includes(searchTxt.toLowerCase()))
-  };
+  const [restaurants, filteredRes, setfilteredRes] = useRes();
+  const isOnline = useOnline();
 
-  useEffect(() => {
-    getRestaurants();
-  }, []);
-
-  async function getRestaurants(){
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.2599333&lng=77.412615&page_type=DESKTOP_WEB_LISTING");
-    const json = await data.json();
-    console.log(json);
-    setRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setfilteredRes(json?.data?.cards[2]?.data?.data?.cards);
+  if (!isOnline) {
+    return (
+      <h1>
+        It looks like you're offline, please check your internet connection
+      </h1>
+    );
   }
 
   if (!restaurants) return null;
 
-  return (restaurants?.length > 0) ? (
+  return restaurants?.length > 0 ? (
     <>
       <div className="searchContainer">
         <input
@@ -53,8 +48,8 @@ const Body = () => {
           <h1>No restaurants matched your filter</h1>
         ) : (
           filteredRes.map((restaurant) => (
-            <Link to= {"/restaurant/"+ restaurant.data.id}>
-            <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+            <Link to={"/restaurant/" + restaurant.data.id}>
+              <RestaurantCard {...restaurant.data} />
             </Link>
           ))
         )}
@@ -63,6 +58,5 @@ const Body = () => {
   ) : (
     <ShimmerUI />
   );
-  
-  }
+};
 export default Body;

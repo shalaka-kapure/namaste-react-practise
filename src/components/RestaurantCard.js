@@ -12,9 +12,10 @@ const RestaurantCard = ({
   cuisines,
   cloudinaryImageId,
   lastMileTravelString,
+  id
 }) => {
   return (
-    <div className="card">
+    <div className="card" key={id}>
       <img
         src={IMG_CDN_URL+cloudinaryImageId }
         alt="logo"

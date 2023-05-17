@@ -121,7 +121,7 @@ json is logged
 componentDidUpdate
 componentWillUnmount (when moving to other page)
 
-componentDidMount will be called after 1st render (like when empty dependency array is passed), componentDidUpdate will be called after every next render (when no dependency array is passed)
+componentDidMount will be called after 1st render (like when empty dependency array is passed), componentDidUpdate will be called after  initial render/every next render/everytime the state is updated/component receives new props (when no dependency array is passed)
 
 useEffect(()=>{
     console.log("useEffect") //componentDidMount 
@@ -135,3 +135,9 @@ console.log("render")
 render
 useEffect
 useEffect return //will be printed when you leave the page
+
+Hooks gives us readability, reusability, maintainability, separation of concerns, testable, components have modularity
+
+Chunking = code splitting = dynamic bundling = lazy loading = On Demand loading = dynamic import
+
+In On Demand loading, upon render, React will suspend loading, beacuse in the first time there is no code. To avoid this we use { suspense} from react.  

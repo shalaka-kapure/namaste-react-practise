@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client ";
 import HeaderComponent from "./src/components/HeaderComponent";
 import Body from "./src/components/Body";
@@ -13,6 +13,11 @@ import Error from "./src/components/Error";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/Profile";
+import ShimmerUI from "./src/components/ShimmerUI";
+// import Instamart from "./src/components/Instamart";
+
+//Lazy loading
+const Instamart = lazy(() => import("./src/components/Instamart")); // this is a promise
 
 const AppLayout = () => {
   return (
@@ -37,10 +42,12 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
-        children: [{
-          path: "profile", //never use /profile 
-          element: <Profile />,
-        }]
+        children: [
+          {
+            path: "profile", //never use /profile
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/contact",
@@ -49,7 +56,15 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
-      }
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<ShimmerUI/>}>
+            <Instamart />,
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
