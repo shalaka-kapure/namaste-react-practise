@@ -14,6 +14,7 @@ import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/Profile";
 import ShimmerUI from "./src/components/ShimmerUI";
+import { SearchProvider } from "./src/components/SearchContext";
 // import Instamart from "./src/components/Instamart";
 
 //Lazy loading
@@ -22,9 +23,11 @@ const Instamart = lazy(() => import("./src/components/Instamart")); // this is a
 const AppLayout = () => {
   return (
     <>
-      <HeaderComponent />
-      <Outlet />
-      <Footer />
+      <SearchProvider>
+        <HeaderComponent />
+        <Outlet />
+        <Footer />
+      </SearchProvider>
     </>
   );
 };
@@ -37,7 +40,7 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <Body/>,
       },
       {
         path: "/about",
@@ -60,7 +63,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: (
-          <Suspense fallback={<ShimmerUI/>}>
+          <Suspense fallback={<ShimmerUI />}>
             <Instamart />,
           </Suspense>
         ),

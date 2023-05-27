@@ -140,4 +140,10 @@ Hooks gives us readability, reusability, maintainability, separation of concerns
 
 Chunking = code splitting = dynamic bundling = lazy loading = On Demand loading = dynamic import
 
-In On Demand loading, upon render, React will suspend loading, beacuse in the first time there is no code. To avoid this we use { suspense} from react.  
+In On Demand loading, upon render, React will suspend loading, beacuse in the first time there is no code. To avoid this we use { suspense} from react. 
+
+Q. Why we use CSS frameworks: 
+(1)consistent UI
+(2)reusability
+
+Q. props drilling

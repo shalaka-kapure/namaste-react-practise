@@ -4,6 +4,7 @@ const useRes = () => {
   const [restaurants, setRestaurants] = useState([]);
   // const [restaurants, setRestaurants] = useState(resList); mapping data from the mock data
   const [filteredRes, setfilteredRes] = useState([]);
+  const [resInfo, setresInfo] = useState([]);
 
   useEffect(() => {
     getRestaurants();
@@ -15,9 +16,10 @@ const useRes = () => {
     );
     const json = await data.json();
     console.log(json);
+    setresInfo(json?.data?.cards[2]?.data?.data);
     setRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setfilteredRes(json?.data?.cards[2]?.data?.data?.cards);
   }
-  return [restaurants, filteredRes, setfilteredRes];
+  return [restaurants, filteredRes, setfilteredRes,resInfo];
 };
 export default useRes;
