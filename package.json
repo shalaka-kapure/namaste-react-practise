@@ -9,14 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shalaka-kapure/namaste-react-practise.git"
+    "url": "https://github.com/shalaka-kapure/DevEats.git"
   },
   "author": "Shalaka Kapure",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shalaka-kapure/namaste-react-practise/issues"
+    "url": "https://github.com/shalaka-kapure/DevEats/issues"
   },
-  "homepage": "https://github.com/shalaka-kapure/namaste-react-practise#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.14",
     "parcel": "^2.8.3",
