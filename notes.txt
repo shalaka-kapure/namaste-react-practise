@@ -146,4 +146,33 @@ Q. Why we use CSS frameworks:
 (1)consistent UI
 (2)reusability
 
-Q. props drilling
+Q. props drilling- Passing props from parent to its children to its children (grandchildren)
+
+REDUX
+Q. On Clicking a button it dispatches an action which calls a reducer (function) which updates/modifies the slice of our store
+
+Q. The cart is subscribed to the store using the useSelector(hook) which is used to read the data from the selected slice.
+
+Q. Create a store using configureStore() from RTK
+Procide the store to app using <Provider store={store}> </Provider> from RR.
+Created slice from createSlice
+const sliceName = createSlice({
+    name: "",
+    initalState:{},
+    reducers: {
+        funcName: (state, action) => {
+            state=action.payload
+        }
+    }
+})
+
+export const { funcName } = sliceName.actions
+export default sliceName.reducer;
+
+Put slice into store
+const store = configureStore({
+  reducer: {
+    cart: cartSlice,
+    user: userSlice
+  },
+});

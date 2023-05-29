@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import ReactDOM from "react-dom/client ";
 import HeaderComponent from "./src/components/HeaderComponent";
 import Body from "./src/components/Body";
@@ -14,20 +14,29 @@ import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/Profile";
 import ShimmerUI from "./src/components/ShimmerUI";
-import { SearchProvider } from "./src/components/SearchContext";
+import Cart from "./src/components/Cart";
+import { Provider } from "react-redux";
+import store from "./src/utils/store";
 // import Instamart from "./src/components/Instamart";
 
 //Lazy loading
 const Instamart = lazy(() => import("./src/components/Instamart")); // this is a promise
 
 const AppLayout = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
     <>
-      <SearchProvider>
-        <HeaderComponent />
-        <Outlet />
-        <Footer />
-      </SearchProvider>
+    <Provider store={store}>
+      <HeaderComponent toggleCart={toggleCart} />
+      {isCartOpen && <Cart />}
+      <Outlet />
+      <Footer />
+      </Provider>
     </>
   );
 };
@@ -40,7 +49,7 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body/>,
+        element: <Body />,
       },
       {
         path: "/about",

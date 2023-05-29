@@ -11,6 +11,7 @@ const Body = () => {
   const [restaurants, filteredRes, setFilteredRes, resInfo] = useRes();
   const [searchTxt, setSearchTxt] = useState("");
   const isOnline = useOnline();
+  const [activeSort, setActiveSort] = useState(null);
 
   useEffect(() => {
     if (restaurants) {
@@ -31,8 +32,9 @@ const Body = () => {
       return 0;
     });
     setFilteredRes(sortedData);
+    setActiveSort("costLowToHigh");
   };
-  
+
   const handleSortByCostHighToLow = () => {
     const sortedData = [...filteredRes].sort((a, b) => {
       if (a.data.costForTwo > b.data.costForTwo) {
@@ -44,8 +46,9 @@ const Body = () => {
       return 0;
     });
     setFilteredRes(sortedData);
+    setActiveSort("costHighToLow");
   };
-  
+
   const handleSortByRating = () => {
     const sortedData = [...filteredRes].sort((a, b) => {
       if (a.data.avgRating > b.data.avgRating) {
@@ -57,8 +60,9 @@ const Body = () => {
       return 0;
     });
     setFilteredRes(sortedData);
+    setActiveSort("rating");
   };
-  
+
   const handleSortByDeliveryTime = () => {
     const sortedData = [...filteredRes].sort((a, b) => {
       if (a.data.deliveryTime < b.data.deliveryTime) {
@@ -70,47 +74,42 @@ const Body = () => {
       return 0;
     });
     setFilteredRes(sortedData);
+    setActiveSort("deliveryTime");
   };
-  
 
   if (!isOnline) {
     return (
-      <h1>
-        It looks like you're offline, please check your internet connection
-      </h1>
+      <div className="bg-gray-200 h-[90vh] flex items-center justify-center">
+        <h1>
+          It looks like you're offline, please check your internet connection
+        </h1>
+      </div>
     );
   }
 
   if (!restaurants) return null;
 
   return restaurants?.length > 0 ? (
-    <div className="bg-gray-200">
-      <div className="flex flex-row items-center justify-between px-10">
+    <div className="bg-gray-200 min-h-[90vh]">
+      <div className="flex flex-col lg:flex-row items-center justify-between px-12 py-2">
         <div className="flex flex-row items-center justify-center">
-          <div className="text-xl">{filteredRes.length} restaurants</div>
-          <div className="flex flex-row items-center justify-center">
+          <div className="text-xl lg:w-auto w-[50%]">{filteredRes.length} restaurants</div>
+          <div className="flex flex-row items-center justify-center lg:w-auto w-[50%]">
             <input
               type="text"
-              className="border border-black bg-gray-800 rounded ml-5 p-1 h-8 text-white"
+              className="border-2 border-gray-800 bg-gray-200 rounded ml-5 p-1 h-8 text-gray-800"
               placeholder="Search here..."
               value={searchTxt}
               onChange={(e) => setSearchTxt(e.target.value)}
             />
-            <button
-              className="border border-gray-800 bg-gray-800 m-3 p-1 rounded-md text-white"
-              onClick={() => {
-                const filteredData = filterData(searchTxt, restaurants);
-                setFilteredRes(filteredData);
-              }}
-            >
-              <MagnifyingGlassIcon className="h-6 w-6 text-white" />
-            </button>
           </div>
         </div>
-        <div className="flex flex-row justify-around w-[500px]">
+        <div className="flex flex-row lg:justify-around justify-evenly lg:w-[500px] w-[100vw]">
           <div>
             <h3
-              className="cursor-pointer hover:border-b-[1px] active:border-b-[1px]"
+              className={`cursor-pointer ${
+                activeSort === "costLowToHigh" ? "border-b border-black" : ""
+              } hover:border-b-[1px] hover:border-black lg:w-auto w-[126px]`}
               onClick={handleSortByCostLowToHigh}
             >
               Cost: Low to High
@@ -118,7 +117,9 @@ const Body = () => {
           </div>
           <div>
             <h3
-              className="cursor-pointer hover:border-b-[1px] active:border-b-[1px]"
+              className={`cursor-pointer ${
+                activeSort === "costHighToLow" ? "border-b border-black" : ""
+              } hover:border-b-[1px] hover:border-black lg:w-auto w-[126px]`}
               onClick={handleSortByCostHighToLow}
             >
               Cost: High to Low
@@ -126,7 +127,9 @@ const Body = () => {
           </div>
           <div>
             <h3
-              className="cursor-pointer hover:border-b-[1px] active:border-b-[1px]"
+              className={`cursor-pointer ${
+                activeSort === "rating" ? "border-b border-black" : ""
+              } hover:border-b-[1px] hover:border-black lg:w-auto w-[50px]`}
               onClick={handleSortByRating}
             >
               Rating
@@ -134,7 +137,9 @@ const Body = () => {
           </div>
           <div>
             <h3
-              className="cursor-pointer hover:border-b-[1px] active:border-b-[1px]"
+              className={`cursor-pointer ${
+                activeSort === "deliveryTime" ? "border-b border-black" : ""
+              } hover:border-b-[1px] hover:border-black lg:w-auto w-[100px]`}
               onClick={handleSortByDeliveryTime}
             >
               Delivery Time
@@ -142,12 +147,20 @@ const Body = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap ml-[25px]">
+      <div className="flex items-center justify-center border border-gray-300 w-[93vw] h-[1px] mx-10">
+
+      </div>
+      <div className="flex flex-wrap lg:ml-[35px] ml-[8px]">
         {filteredRes?.length === 0 ? (
-          <h1>No restaurants matched your Search</h1>
+          <div className="bg-gray-200 w-[100vw] flex items-center justify-center">
+            <h1>No restaurants matched your Search</h1>
+          </div>
         ) : (
           filteredRes.map((restaurant) => (
-            <Link to={"/restaurant/" + restaurant.data.id} key={restaurant.data.id}>
+            <Link
+              to={"/restaurant/" + restaurant.data.id}
+              key={restaurant.data.id}
+            >
               <RestaurantCard {...restaurant.data} />
             </Link>
           ))

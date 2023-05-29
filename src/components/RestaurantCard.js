@@ -18,7 +18,7 @@ const RestaurantCard = ({
   aggregatedDiscountInfo,
 }) => {
   return (
-    <div className="md:w-60 shadow-md md:shadow-none py-4 px-4 md:py-2  hover:shadow-xl rounded flex flex-col gap-1 text-[0.7rem] text-[#535665] ">
+    <div className="md:w-60 shadow-md md:shadow-none py-4 px-4 md:py-2  hover:shadow-2xl rounded flex flex-col gap-1 text-[0.7rem] text-[#535665] lg:h-[320px] h-[380px]">
     <img
       src={
         IMG_CDN_URL +
@@ -35,7 +35,7 @@ const RestaurantCard = ({
       {/* 2) <h2>{restaurant.data?.name}</h2> */}
       {/* 3), 4), 5) <h2>{name}}</h2> */}{" "}
       {/* If props are further destructured*/}
-      <span className="">{cuisines.join(", ")}</span>
+      <span className="h-[40px]">{cuisines.join(", ")}</span>
         <div className="flex justify-between items-center my-2 font-medium">
           <div className="flex items-center gap-1 px-1 text-white bg-green-500 font-semibold">
             <span className="text-[0.6rem]">&#9733;</span>

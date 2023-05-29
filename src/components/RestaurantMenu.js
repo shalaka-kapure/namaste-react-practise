@@ -1,14 +1,22 @@
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../config";
-import ShimmerUI from "./ShimmerUI";
 import useRestaurant from "../utils/useRestaurant";
 import useOnline from "../utils/useOnline";
+import ShimmerMenu from "./ShimmerMenu";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
 
   const [resInfo, menu] = useRestaurant(id);
   const isOnline = useOnline();
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  }
 
   if (!isOnline) {
     return (
@@ -27,15 +35,15 @@ const RestaurantMenu = () => {
               <span className="text-xl font-bold text-black">
                 <h2>{resInfo.name}</h2>
               </span>
-              <span className="">
-                Address: {resInfo?.labels[1].message}
-                <i className="text-blue-600 fa-solid fa-location-dot"></i>
-              </span>
               <img
                 className="w-56 h-36 rounded"
                 src={IMG_CDN_URL + resInfo.cloudinaryImageId}
                 alt=""
               />
+              <span className="">
+                Address: {resInfo?.labels[1].message}
+                <i className="text-blue-600 fa-solid fa-location-dot"></i>
+              </span>
               <span className="">
                 {resInfo.avgRating}★{" "}
                 <i className="text-green-600 fa-solid fa-star"></i> |{" "}
@@ -75,65 +83,66 @@ const RestaurantMenu = () => {
               </span>
             </div>
           </div>
-        <div className="flex flex-col justify-between border-b pb-6 mb-4 gap-6">
-          {menu.map((card, index) => (
-            <div className="flex flex-col" key={index}>
-              {card?.card?.card["@type"] ===
-                "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
-                <div>
-                  <h2>{card?.card?.card?.title}</h2>
-                  {card?.card?.card?.itemCards?.map((item, itemIndex) => (
-                    <div className="flex flex-row h-auto mb-1">
-                        <div className="flex flex-col gap-2 w-full md:w-3/4"
-                        key={itemIndex}
-                      >
-                        <span className="font-semibold text-base">
-                          {item?.card?.info?.name}
-                        </span>
-                        <div className="flex items-center gap-2">
-                          <span className="font-semibold">
-                            &#8377;{" "}
-                            {item?.card?.info?.price
-                              ? item.card.info.price / 100
-                              : item.card.info.defaultPrice / 100}
-                          </span>
-                        </div>
-                        <p className="text-xs text-[#535665]">
-                          Category: {item?.card?.info?.category}
-                        </p>
-                        <p className="text-xs text-[#535665] ">
-                          Description: {item?.card?.info?.description}
-                        </p>
-                      </div>
-                      <div className=" flex flex-col gap-1 relative w-auto h-[5.5rem]">
-                        <img
-                          src={
-                            item?.card?.info?.imageId
-                              ? IMG_CDN_URL + item?.card?.info?.imageId
-                              : "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/39cd5e4824e5c011ffaf56ddc39891e8"
-                          }
-                          alt=""
-                          className="w-[10rem] h-[6rem] rounded self-center object-cover"
-                        />
-                        <button
-                          className="absolute bottom-[-8px] bg-white shadow-md border self-center text-[10px] py-1 px-4 font-medium rounded  active:scale-90 hover:bg-orange-200 transition-all duration-300 ease-in-out"
-                          onClick={() => addFoodItem(card)}
+          <div className="flex flex-col justify-between border-b pb-6 mb-4 gap-6">
+            {menu.map((card, index) => (
+              <div className="flex flex-col" key={index}>
+                {card?.card?.card["@type"] ===
+                  "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
+                  <div>
+                    <h2>{card?.card?.card?.title}</h2>
+                    {card?.card?.card?.itemCards?.map((item, itemIndex) => (
+                      <div className="flex flex-row h-auto mb-1">
+                        <div
+                          className="flex flex-col gap-2 w-full md:w-3/4"
+                          key={itemIndex}
                         >
-                          ADD TO CART
-                        </button>
+                          <span className="font-semibold text-base">
+                            {item?.card?.info?.name}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold">
+                              &#8377;{" "}
+                              {item?.card?.info?.price
+                                ? item.card.info.price / 100
+                                : item.card.info.defaultPrice / 100}
+                            </span>
+                          </div>
+                          <p className="text-xs text-[#535665]">
+                            Category: {item?.card?.info?.category}
+                          </p>
+                          <p className="text-xs text-[#535665] ">
+                            Description: {item?.card?.info?.description}
+                          </p>
+                        </div>
+                        <div className=" flex flex-col gap-1 relative w-auto h-[5.5rem]">
+                          <img
+                            src={
+                              item?.card?.info?.imageId
+                                ? IMG_CDN_URL + item?.card?.info?.imageId
+                                : "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/39cd5e4824e5c011ffaf56ddc39891e8"
+                            }
+                            alt=""
+                            className="w-[10rem] h-[6rem] rounded self-center object-cover"
+                          />
+                          <button
+                            className="absolute bottom-[-8px] bg-white shadow-md border self-center text-[10px] py-1 px-4 font-medium rounded  active:scale-90 hover:bg-orange-200 transition-all duration-300 ease-in-out"
+                            onClick={() => handleAddItem(item)}
+                          >
+                            ADD TO CART
+                          </button>
+                        </div>
                       </div>
-                      </div>                    
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
   ) : (
-    <ShimmerUI />
+    <ShimmerMenu />
   );
 };
 
